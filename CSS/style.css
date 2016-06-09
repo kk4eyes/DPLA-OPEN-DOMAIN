@@ -1,0 +1,22 @@
+body{
+box-sizing:border-box;
+}
+
+header {
+ text-align:center;
+}
+.how-to{
+text-align:center;
+}
+
+#injection_site{
+  display: flex;
+width:100%;
+  border:1px solid black;
+  flex-wrap:wrap;
+  justify-content:space-around;
+  align-content: center;
+}
+
+
+
