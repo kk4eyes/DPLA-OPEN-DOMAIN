@@ -19,5 +19,12 @@ width:100%;
 
 
 
+.pix{
+	position:relative;
+	border: 1px solid black;
+}
+button{
+	position: absolute;
+	margin-top:2%;
 
-
+}
