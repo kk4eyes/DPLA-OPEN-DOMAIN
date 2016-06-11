@@ -9,22 +9,28 @@ var featherEditor = new Aviary.Feather({
 
         var img = document.getElementById(imageID);
         img.src = newURL;
+        //if the download button already exists in the div
         if ($("#" + imageID).parents(".pix:first").find(".downloadButton").length > 0) {
+            //change the link of the download button to the newURL of the image after finished saving
+            //using propertiers from <a download>
             $("#" + imageID).parents(".pix:first").find(".downloadButton").attr({ "href": newURL, "download": newURL });
+            //if it doesnt already exist create a new downloadbutton
         } else {
             var downloadButton = "<a class='downloadButton' download='" + newURL + "'href='" + newURL + "'title='ImageName'>Download</a>";
+            //append the new download button to the first pix div that is the parent of the specific imageID
+            //we are working with
             $("#" + imageID).parents(".pix:first").append(downloadButton);
         }
-
+        //find the tweet button in the first px div that has the imageID we are looking for
         var tweetButton = $("#" + imageID).parents(".pix:first").find(".tweetButton");
-        //console.log(tweetButton);
+        //get the href url from tweetButton
         var tweetHref = tweetButton.attr("href");
         console.log(tweetHref);
-
+        //edit the original tweetHref url and replace it with the original text before "dpla:" and after after "&hashtags" and in between add the newURL parameter
         var editedURL = tweetHref.split("dpla:")[0] + "dpla:" + newURL + "&hashtags" + tweetHref.split("&hashtags")[1];
 
         console.log(editedURL);
-
+        //store the edited url in tweetButton
         tweetButton.attr("href", editedURL);
 
     },
@@ -45,43 +51,87 @@ $.getJSON('http://api.dp.la/v2/items?&sourceResource.type=%22image%22&sourceReso
 
     $(".totalImages").text("There are currently " + data.count + " free to use images from the DPLA available");
 });
+var numOfPages = 0;
+var searchTerm = "";
+var subject = "";
 $(function() {
-    var numOfPages=0;
-    var searchTerm = "";
-    var subject = "";
+
+    var win = $(window);
+    $(window).scroll(function() {
+        if ($(document).height() - win.height() == win.scrollTop()) {
+            numOfPages++;
+            $.getJSON('http://api.dp.la/v2/items?&sourceResource.type=%22image%22&sourceResource.subject=' + searchTerm + '&sourceResource.rights=%22No%20known%20copyright&page_size=10&page=' + numOfPages + '&api_key=9772d1f08da11321921643124e86205b', function(data) {
+
+                if (data.count > 0) {
+                    $(".searchCount").text(data.count + " results returned for " + searchTerm);
+                } else {
+                    $(".searchCount").text("Your search term " + searchTerm + " returned " + data.count + " results. Please try again.");
+                }
+                var image = data.docs;
+                $.each(image, function(i, value) {
+
+                    //grab link of document's url
+                    var link = data.docs[i].isShownAt;
+                    //grab where document originates
+                    var dataProvider = data.docs[i].dataProvider;
+                    if (searchTerm.indexOf(" ") > 0) {
+                        subject = searchTerm.replace(" ", "");
+                    } else {
+                        subject = searchTerm;
+                    }
+
+
+                    var tweetButton = "<a class='tweetButton' href='https://twitter.com/intent/tweet?text=No copyright photo via the " + dataProvider + " and dpla:" + link + "&hashtags=" + subject + ", dpla'>Tweet This</a>";
+
+
+                    $("#injection_site").append("<div class='pix'><a href=" + link + "><img id='image" + i + "'src=" + data.docs[i].object + "></a><button id='button" + i + "'>Edit</button>" + tweetButton + "</div>")
+                    $("#button" + i).click(function() {
+                        launchEditor("image" + i, data.docs[i].object);
+
+
+                    });
+
+                });
+
+            });
+
+
+        }
+    });
+
     $("form").submit(function(e) {
         e.preventDefault();
         searchTerm = $("#subject").val();
         console.log(searchTerm);
 
-        $.getJSON('http://api.dp.la/v2/items?&sourceResource.type=%22image%22&sourceResource.subject=' + searchTerm + '&sourceResource.rights=%22No%20known%20copyright&page_size=500&api_key=9772d1f08da11321921643124e86205b', function(data) {
+        $.getJSON('http://api.dp.la/v2/items?&sourceResource.type=%22image%22&sourceResource.subject=' + searchTerm + '&sourceResource.rights=%22No%20known%20copyright&page_size=10&api_key=9772d1f08da11321921643124e86205b', function(data) {
 
             if (data.count > 0) {
                 $(".searchCount").text(data.count + " results returned for " + searchTerm);
             } else {
                 $(".searchCount").text("Your search term " + searchTerm + " returned " + data.count + " results. Please try again.");
             }
-            
             var image = data.docs;
-
             $.each(image, function(i, value) {
 
+                //grab link of document's url
                 var link = data.docs[i].isShownAt;
+                //grab where document originates
                 var dataProvider = data.docs[i].dataProvider;
                 if (searchTerm.indexOf(" ") > 0) {
                     subject = searchTerm.replace(" ", "");
                 } else {
                     subject = searchTerm;
                 }
-                console.log(subject);
-                console.log(link);
+
 
                 var tweetButton = "<a class='tweetButton' href='https://twitter.com/intent/tweet?text=No copyright photo via the " + dataProvider + " and dpla:" + link + "&hashtags=" + subject + ", dpla'>Tweet This</a>";
-                console.log(subject);
+
 
                 $("#injection_site").append("<div class='pix'><a href=" + link + "><img id='image" + i + "'src=" + data.docs[i].object + "></a><button id='button" + i + "'>Edit</button>" + tweetButton + "</div>")
                 $("#button" + i).click(function() {
                     launchEditor("image" + i, data.docs[i].object);
+
 
                 });
 
@@ -90,8 +140,5 @@ $(function() {
         });
 
     });
+
 });
-
-
-
-
