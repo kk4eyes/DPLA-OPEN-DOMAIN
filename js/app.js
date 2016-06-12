@@ -54,13 +54,16 @@ $.getJSON('http://api.dp.la/v2/items?&sourceResource.type=%22image%22&sourceReso
 var numOfPages = 0;
 var searchTerm = "";
 var subject = "";
+var loading = false;
 $(function() {
 
     var win = $(window);
     $(window).scroll(function() {
-        if ($(document).height() - win.height() == win.scrollTop()) {
+        if ($(document).height() - win.height() == win.scrollTop() && !loading) {
+            loading = true;
             numOfPages++;
             $.getJSON('http://api.dp.la/v2/items?&sourceResource.type=%22image%22&sourceResource.subject=' + searchTerm + '&sourceResource.rights=%22No%20known%20copyright&page_size=10&page=' + numOfPages + '&api_key=9772d1f08da11321921643124e86205b', function(data) {
+                loading = false;
 
                 if (data.count > 0) {
                     $(".searchCount").text(data.count + " results returned for " + searchTerm);
@@ -83,10 +86,12 @@ $(function() {
 
                     var tweetButton = "<a class='tweetButton' href='https://twitter.com/intent/tweet?text=No copyright photo via the " + dataProvider + " and dpla:" + link + "&hashtags=" + subject + ", dpla'>Tweet This</a>";
 
+                        var imageId= ""+numOfPages+"-"+i;
+                        console.log(imageId);
 
-                    $("#injection_site").append("<div class='pix'><a href=" + link + "><img id='image" + i + "'src=" + data.docs[i].object + "></a><button id='button" + i + "'>Edit</button>" + tweetButton + "</div>")
-                    $("#button" + i).click(function() {
-                        launchEditor("image" + i, data.docs[i].object);
+                    $("#injection_site").append("<div class='pix'><a href=" + link + "><img id='image"  +imageId + "'src=" + data.docs[i].object + "></a><button id='button" + imageId + "'>Edit</button>" + tweetButton + "</div>")
+                    $("#button" + imageId).click(function() {
+                        launchEditor("image" + imageId, data.docs[i].object);
 
 
                     });
@@ -103,6 +108,9 @@ $(function() {
         e.preventDefault();
         searchTerm = $("#subject").val();
         console.log(searchTerm);
+        $("#injection_site").html("");
+        $(".searchCount").html("");
+
 
         $.getJSON('http://api.dp.la/v2/items?&sourceResource.type=%22image%22&sourceResource.subject=' + searchTerm + '&sourceResource.rights=%22No%20known%20copyright&page_size=10&api_key=9772d1f08da11321921643124e86205b', function(data) {
 
