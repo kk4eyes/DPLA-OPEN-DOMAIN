@@ -1,12 +1,18 @@
 body {
     box-sizing: border-box;
+    padding: 0 6%;
 }
 
-header {
+.jumbotron {
+    background: white;
+    margin-bottom: -2%;
+}
+
+h1 {
     text-align: center;
 }
 
-.how-to {
+.form {
     text-align: center;
 }
 

@@ -4,27 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="CSS/normalize.css">
+    <link rel="stylesheet" href="CSS/bootstrap.css">
     <link rel="stylesheet" href="CSS/style.css">
     <title>DPLA Public Domain Image Editor</title>
 </head>
 
 <body>
-    <header>
-        <h1>DPLA Public Domain Image Editor</h1>
-        <h3 class="totalImages"></h3>
-    </header>
-    <div class="how-to">
-        <p>To start fill out the form. Enter a search term, and we'll show you a bunch of images related to that information from the DPLA that you can edit however you want and use however you want!</p>
+    <div class="row">
+        <div class="jumbotron">
+            <h1 class="display-3">DPLA Public Domain Image Editor</h1>
+            <div class="col-xs-10 col-xs-offset-1">
+                <h3 class="totalImages"></h3>
+                <p class="lead">To start fill out the form. Enter a search term, and we'll show you a bunch of images related to that information from the DPLA that you can edit however you want and use however you want!</p>
+            </div>
+        </div>
+    </div>
+    <div class="form">
         <form id="form">
             Term to Search:
             <input type="text" id="subject" name="term"></input>
         </form>
         <h3 class="searchCount"></h3>
         <div id='injection_site'></div>
-        <script src="js/jquery-2.2.4.min.js"></script>
-        <script type="text/javascript" src="http://feather.aviary.com/imaging/v3/editor.js"></script>
-        <script src="js/app.js"></script>
+    </div>
+    <script src="js/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="http://feather.aviary.com/imaging/v3/editor.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/app.js"></script>
 </body>
 
 </html>
