@@ -84,12 +84,12 @@ $(function() {
                     }
 
 
-                    var tweetButton = "<a class='tweetButton' href='https://twitter.com/intent/tweet?text=No copyright photo via the " + dataProvider + " and dpla:" + link + "&hashtags=" + subject + ", dpla'>Tweet This</a>";
+                    var tweetButton = "<a class='tweetButton btn btn-primary' href='https://twitter.com/intent/tweet?text=No copyright photo via the " + dataProvider + " and dpla: " + link + "&hashtags=" + subject + ", dpla' target='_blank'>Tweet This</a></button>";
 
                         var imageId= ""+numOfPages+"-"+i;
                         console.log(imageId);
 
-                    $("#injection_site").append("<div class='pix'><a href=" + link + "><img id='image"  +imageId + "'src=" + data.docs[i].object + "></a><button id='button" + imageId + "'>Edit</button>" + tweetButton + "</div>")
+                    $("#injection_site").append("<div class='card pix'><a href=" + link + "><img class='card-image-top' id='image"  +imageId + "'src=" + data.docs[i].object + "></a><div class='card-block'><button class='btn btn-primary' id='button" + imageId + "'>Edit</button>" + tweetButton + "</div></div>")
                     $("#button" + imageId).click(function() {
                         launchEditor("image" + imageId, data.docs[i].object);
 
@@ -133,10 +133,10 @@ $(function() {
                 }
 
 
-                var tweetButton = "<a class='tweetButton' href='https://twitter.com/intent/tweet?text=No copyright photo via the " + dataProvider + " and dpla:" + link + "&hashtags=" + subject + ", dpla'>Tweet This</a>";
+                var tweetButton = "<a class='tweetButton btn btn-primary' href='https://twitter.com/intent/tweet?text=No copyright photo via the " + dataProvider + " and dpla:" + link + "&hashtags=" + subject + ", dpla' target='_blank'>Tweet This</a></button>";
 
 
-                $("#injection_site").append("<div class='pix'><a href=" + link + "><img id='image" + i + "'src=" + data.docs[i].object + "></a><button id='button" + i + "'>Edit</button>" + tweetButton + "</div>")
+                $("#injection_site").append("<div class='card pix'><a href=" + link + "><img class='card-image-top' id='image" + i + "'src=" + data.docs[i].object + "></a><div class='card-block'><button class='btn btn-primary' id='button" + i + "'>Edit</button>" + tweetButton + "</div></div>")
                 $("#button" + i).click(function() {
                     launchEditor("image" + i, data.docs[i].object);
 

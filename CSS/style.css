@@ -8,7 +8,7 @@ body {
     margin-bottom: -2%;
 }
 
-h1 {
+h1, .searchCount {
     text-align: center;
 }
 
@@ -18,7 +18,7 @@ h1 {
 
 #injection_site {
     display: flex;
-    width: 100%;
+    width: 95%;
     flex-wrap: wrap;
     justify-content: space-around;
     align-content: center;
@@ -26,10 +26,8 @@ h1 {
 
 .pix {
     position: relative;
-    border: 1px solid black;
+    margin:2%;
+
 }
 
-button {
-    position: absolute;
-    margin-top: 2%;
-}
+
