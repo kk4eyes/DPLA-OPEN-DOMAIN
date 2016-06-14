@@ -1,3 +1,9 @@
+.gi-2x{font-size: 2em;}
+.gi-3x{font-size: 3em;}
+.gi-4x{font-size: 4em;}
+.gi-5x{font-size: 5em;}
+
+
 body {
     box-sizing: border-box;
     padding: 0 6%;
@@ -27,7 +33,17 @@ h1, .searchCount {
 .pix {
     position: relative;
     margin:2%;
+    
+    
 
 }
+.card-block{
+    background:yellow;
+}
 
+
+
+.downloadButton{
+    display:none;
+}
 

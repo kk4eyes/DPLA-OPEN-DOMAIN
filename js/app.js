@@ -1,4 +1,7 @@
 /*feather script*/
+
+
+
 var featherEditor = new Aviary.Feather({
     apiKey: '7821528c-aaf6-4f46-9d29-6e1e72348875',
     theme: 'dark', // Check out our new 'light' and 'dark' themes!
@@ -10,17 +13,19 @@ var featherEditor = new Aviary.Feather({
         var img = document.getElementById(imageID);
         img.src = newURL;
         //if the download button already exists in the div
-        if ($("#" + imageID).parents(".pix:first").find(".downloadButton").length > 0) {
+        //if ($("#" + imageID).parents(".pix:first").find(".downloadButton").length > 0) {
             //change the link of the download button to the newURL of the image after finished saving
             //using propertiers from <a download>
-            $("#" + imageID).parents(".pix:first").find(".downloadButton").attr({ "href": newURL, "download": newURL });
+            $("#" + imageID).parents(".pix:first").find(".downloadButton").attr({ "href": newURL, "download": newURL }).show();
+            
             //if it doesnt already exist create a new downloadbutton
-        } else {
-            var downloadButton = "<a class='downloadButton' download='" + newURL + "'href='" + newURL + "'title='ImageName'>Download</a>";
+        //} 
+        /*else {
+            var downloadButton = "<span class='text-center'><a class='downloadButton' download='" + newURL + "'href='" + newURL + "'title='ImageName'><span class='glyphicon glyphicon-download gi-2x'></span></a></span>";
             //append the new download button to the first pix div that is the parent of the specific imageID
             //we are working with
             $("#" + imageID).parents(".pix:first").append(downloadButton);
-        }
+        }*/
         //find the tweet button in the first px div that has the imageID we are looking for
         var tweetButton = $("#" + imageID).parents(".pix:first").find(".tweetButton");
         //get the href url from tweetButton
@@ -84,12 +89,12 @@ $(function() {
                     }
 
 
-                    var tweetButton = "<a class='tweetButton btn btn-primary' href='https://twitter.com/intent/tweet?text=No copyright photo via the " + dataProvider + " and dpla: " + link + "&hashtags=" + subject + ", dpla' target='_blank'>Tweet This</a></button>";
+                    var tweetButton = "<a class='tweetButton' href='https://twitter.com/intent/tweet?text=No copyright photo via the " + dataProvider + " and dpla: " + link + "&hashtags=" + subject + ", dpla' target='_blank'><i class='fa fa-twitter fa-2x'></i></a>";
 
                         var imageId= ""+numOfPages+"-"+i;
                         console.log(imageId);
 
-                    $("#injection_site").append("<div class='card pix'><a href=" + link + "><img class='card-image-top' id='image"  +imageId + "'src=" + data.docs[i].object + "></a><div class='card-block'><button class='btn btn-primary' id='button" + imageId + "'>Edit</button>" + tweetButton + "</div></div>")
+                    $("#injection_site").append("<div class='card pix'><a href='" + link + "'target='_blank''><img class='card-image-top' id='image"  +imageId + "'src=" + data.docs[i].object + "></a><div class='card-block'><span class='text-left'><a class='editButton' id='button" + imageId + "'><span class='glyphicon glyphicon-edit gi-2x'></span></a></span><span class='text-center'><a class='downloadButton' title='ImageName'><span class='glyphicon glyphicon-download gi-2x'></span></a></span><span class='pull-right'>" + tweetButton + "</span></div></div>");
                     $("#button" + imageId).click(function() {
                         launchEditor("image" + imageId, data.docs[i].object);
 
@@ -133,17 +138,24 @@ $(function() {
                 }
 
 
-                var tweetButton = "<a class='tweetButton btn btn-primary' href='https://twitter.com/intent/tweet?text=No copyright photo via the " + dataProvider + " and dpla:" + link + "&hashtags=" + subject + ", dpla' target='_blank'>Tweet This</a></button>";
+                var tweetButton = "<a class='tweetButton' href='https://twitter.com/intent/tweet?text=No copyright photo via the " + dataProvider + " and dpla:" + link + "&hashtags=" + subject + ", dpla' target='_blank'><i class='fa fa-twitter fa-2x'></i></a>";
 
 
-                $("#injection_site").append("<div class='card pix'><a href=" + link + "><img class='card-image-top' id='image" + i + "'src=" + data.docs[i].object + "></a><div class='card-block'><button class='btn btn-primary' id='button" + i + "'>Edit</button>" + tweetButton + "</div></div>")
+                $("#injection_site").append(
+                    "<div class='card pix'>"+
+                        "<a href='" + link + "'target='_blank''><img class='card-image-top' id='image" + i + "'src=" + data.docs[i].object + "></a><div class='card-block'><span class='text-left'><a class='editButton' id='button" + i + "'><span class='glyphicon glyphicon-edit gi-2x'></span></a></span><span class='text-center'><a class='downloadButton' title='ImageName'><span class='glyphicon glyphicon-download gi-2x'></span></a></span><span class='pull-right'>" + tweetButton + "</span></div></div>");
+
+                
+                
                 $("#button" + i).click(function() {
                     launchEditor("image" + i, data.docs[i].object);
 
 
                 });
+            
 
             });
+
 
         });
 
