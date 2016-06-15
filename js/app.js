@@ -94,7 +94,7 @@ $(function() {
                         var imageId= ""+numOfPages+"-"+i;
                         console.log(imageId);
 
-                    $("#injection_site").append("<div class='card pix'><a href='" + link + "'target='_blank''><img class='card-image-top' id='image"  +imageId + "'src=" + data.docs[i].object + "></a><div class='card-block'><span class='text-left'><a class='editButton' id='button" + imageId + "'><span class='glyphicon glyphicon-edit gi-2x'></span></a></span><span class='text-center'><a class='downloadButton' title='ImageName'><span class='glyphicon glyphicon-download gi-2x'></span></a></span><span class='pull-right'>" + tweetButton + "</span></div></div>");
+                    $("#injection_site").append("<div class='card pix'><a href='" + link + "'target='_blank''><img class='card-image-top' id='image"  +imageId + "'src=" + data.docs[i].object + "></a><div class='card-block'><span class='pull-left'><a class='editButton' id='button" + imageId + "'><span class='glyphicon glyphicon-edit gi-2x'></span></a></span><span class='text-center'><a class='downloadButton' title='ImageName'><span class='glyphicon glyphicon-download gi-2x'></span></a></span><span class='pull-right'>" + tweetButton + "</span></div></div>");
                     $("#button" + imageId).click(function() {
                         launchEditor("image" + imageId, data.docs[i].object);
 
@@ -143,7 +143,7 @@ $(function() {
 
                 $("#injection_site").append(
                     "<div class='card pix'>"+
-                        "<a href='" + link + "'target='_blank''><img class='card-image-top' id='image" + i + "'src=" + data.docs[i].object + "></a><div class='card-block'><span class='text-left'><a class='editButton' id='button" + i + "'><span class='glyphicon glyphicon-edit gi-2x'></span></a></span><span class='text-center'><a class='downloadButton' title='ImageName'><span class='glyphicon glyphicon-download gi-2x'></span></a></span><span class='pull-right'>" + tweetButton + "</span></div></div>");
+                        "<a href='" + link + "'target='_blank''><img class='card-image-top' id='image" + i + "'src=" + data.docs[i].object + "></a><div class='card-block'><span class='pull-left'><a class='editButton' id='button" + i + "'><span class='glyphicon glyphicon-edit gi-2x'></span></a></span><span class='text-center'><a class='downloadButton' title='ImageName'><span class='glyphicon glyphicon-download gi-2x'></span></a></span><span class='pull-right'>" + tweetButton + "</span></div></div>");
 
                 
                 

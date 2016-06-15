@@ -30,20 +30,28 @@ h1, .searchCount {
     align-content: center;
 }
 
-.pix {
+div.pix {
     position: relative;
-    margin:2%;
-    
-    
-
+    margin:2% 0% 10% 0%;
 }
 .card-block{
-    background:yellow;
+    
+    text-align:center;
+    display:none;
 }
 
+.pix:hover .card-block{
+    display:block;
+    background:yellow;
 
+}
 
 .downloadButton{
     display:none;
+
 }
+span a {
+  display:inline-block;
+}
+
 
