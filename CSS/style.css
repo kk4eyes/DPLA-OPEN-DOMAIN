@@ -6,17 +6,21 @@
 
 body {
     box-sizing: border-box;
-    padding: 0 6%;
+    padding: 0% 6%;
+  background:  #0c0c27;
 }
 
 .jumbotron {
-    background: white;
+    background:  #0c0c27;
     margin-bottom: -2%;
+    color:white;
 }
 
 h1, .searchCount {
     text-align: center;
+    color:white;
 }
+
 
 .form {
     text-align: center;
@@ -43,26 +47,20 @@ div.pix {
     text-align:center;
     display:none;
     width:100%;
+  display:block;
+  background:#300000;
    
 
-
+}
+.downloadButton, .editButton, .tweetButton{
+  display:none;
 }
 
-.card:hover .card-block{
-    display:block;
-    background:yellow;
-    
-
-
-
-}
-
-.downloadButton{
-    display:none;
-
-}
 span a {
+  
   display:inline-block;
+  color:white;
+
 }
 
 

@@ -61,6 +61,7 @@ var searchTerm = "";
 var subject = "";
 var loading= false;
 $(function() {
+ 
 
     var win = $(window);
     $(window).scroll(function() {
@@ -95,6 +96,7 @@ $(function() {
                         console.log(imageId);
 
                     $("#injection_site").append("<div class='card pix'><a href='" + link + "'target='_blank''><img class='card-image-top' id='image"  +imageId + "'src=" + data.docs[i].object + "></a><div class='card-block'><span class='pull-left'><a class='editButton' id='button" + imageId + "'><span class='glyphicon glyphicon-edit gi-2x'></span></a></span><span class='text-center'><a class='downloadButton' title='ImageName'><span class='glyphicon glyphicon-download gi-2x'></span></a></span><span class='pull-right'>" + tweetButton + "</span></div></div>");
+                   
                     $("#button" + imageId).click(function() {
                         launchEditor("image" + imageId, data.docs[i].object);
 
@@ -102,13 +104,14 @@ $(function() {
                     });
 
                 });
+              loadButtons();
 
             });
 
 
         }
     });
-
+   
     $("form").submit(function(e) {
         e.preventDefault();
         searchTerm = $("#subject").val();
@@ -156,9 +159,14 @@ $(function() {
 
             });
 
-
+      loadButtons();
         });
-
+    
     });
 
 });
+
+function loadButtons(){
+  
+  $(".editButton, .tweetButton").fadeIn(20000);
+}
