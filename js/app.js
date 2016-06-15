@@ -168,5 +168,6 @@ $(function() {
 
 function loadButtons(){
   
+  $(".editButton, .downloadButton").css("cursor", "pointer");
   $(".editButton, .tweetButton").fadeIn(20000);
 }
