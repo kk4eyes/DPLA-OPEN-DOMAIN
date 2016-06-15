@@ -51,8 +51,7 @@ div.pix {
 .card:hover .card-block{
     display:block;
     background:yellow;
-     -webkit-transition-duration: 2s;
-   -webkit-transition-timing-function:  800ms ease;
+    
 
 
 
