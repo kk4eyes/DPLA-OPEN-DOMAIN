@@ -32,17 +32,29 @@ h1, .searchCount {
 
 div.pix {
     position: relative;
-    margin:2% 0% 10% 0%;
+    margin:2% 0% 5% 0%;
+}
+.card{
+    position:relative;
 }
 .card-block{
-    
+
+    position:absolute;
     text-align:center;
     display:none;
+    width:100%;
+   
+
+
 }
 
-.pix:hover .card-block{
+.card:hover .card-block{
     display:block;
     background:yellow;
+     -webkit-transition-duration: 2s;
+   -webkit-transition-timing-function:  800ms ease;
+
+
 
 }
 
