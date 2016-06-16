@@ -175,4 +175,5 @@ function loadButtons(){
   
   $(".card-block").fadeIn(20000);
   $(".editButton, .tweetButton").fadeIn(25000);
+  featherEditor.onError(data.docs[i].object);
 }
