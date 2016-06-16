@@ -40,7 +40,9 @@ var featherEditor = new Aviary.Feather({
 
     },
     onError: function(errorObj) {
+        
         alert(errorObj.message);
+       
     }
 });
 
@@ -96,8 +98,10 @@ $(function() {
                         var imageId= ""+numOfPages+"-"+i;
                         console.log(imageId);
 
+
                     $("#injection_site").append("<div class='card pix'><a href='" + link + "'target='_blank''><img class='card-image-top' id='image"  +imageId + "'src=" + data.docs[i].object + "></a><div class='card-block'><span class='pull-left'><a class='editButton' id='button" + imageId + "'><i class='fa fa-pencil-square-o fa-2x'></i></a></span><span class='text-center'><a class='downloadButton' title='ImageName'><i class='fa fa-download fa-2x'></i></a></span><span class='pull-right'>" + tweetButton + "</span></div></div>");
                    
+
                     $("#button" + imageId).click(function() {
                         launchEditor("image" + imageId, data.docs[i].object);
 
@@ -175,4 +179,5 @@ function loadButtons(){
   
   $(".card-block").fadeIn(20000);
   $(".editButton, .tweetButton").fadeIn(25000);
+  featherEditor.onError(data.docs[i].object);
 }
