@@ -51,7 +51,10 @@ div.pix {
 }
 .downloadButton, .editButton, .tweetButton{
   display:none;
-  margin-bottom:3%;
+
+}
+.pull-left, .pull-right, .text-center{
+  margin-bottom:5%;
 }
 
 span a {
