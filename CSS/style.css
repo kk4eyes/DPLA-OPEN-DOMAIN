@@ -38,17 +38,14 @@ div.pix {
     position: relative;
     margin:2% 2% 5% 2%;
 }
-.card{
-    position:relative;
-}
+
 .card-block{
 
-    position:absolute;
     text-align:center;
     display:none;
     width:100%;
   display:block;
-  background:#300000;
+ 
    
 
 }
