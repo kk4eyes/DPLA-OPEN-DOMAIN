@@ -36,7 +36,7 @@ h1, .searchCount {
 
 div.pix {
     position: relative;
-    margin:2% 0% 5% 0%;
+    margin:2% 2% 5% 2%;
 }
 .card{
     position:relative;
@@ -62,5 +62,9 @@ span a {
   color:white;
 
 }
-
+@media screen and (max-width: 450px ){
+  .card-block{
+    margin-bottom:10%;
+  }
+}
 
