@@ -35,15 +35,13 @@ h1, .searchCount {
 }
 
 div.pix {
-    position: relative;
-    margin:20% 5% 20% 5%;
+    
+    margin:2%;
 }
 .card{
     position:relative;
 }
 .card-block{
-
-  position:absolute;
   text-align:center;
   display:none;
   width:100%;
@@ -57,7 +55,7 @@ div.pix {
 }
 
 span a {
-  
+ 
   display:inline-block;
   color:white;
 
