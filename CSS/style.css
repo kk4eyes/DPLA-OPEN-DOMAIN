@@ -36,17 +36,17 @@ h1, .searchCount {
 
 div.pix {
     position: relative;
-    margin:2% 0% 5% 0%;
+    margin:20% 5% 20% 5%;
 }
 .card{
     position:relative;
 }
 .card-block{
 
-    position:absolute;
-    text-align:center;
-    display:none;
-    width:100%;
+  position:absolute;
+  text-align:center;
+  display:none;
+  width:100%;
   display:block;
   background:#300000;
    
