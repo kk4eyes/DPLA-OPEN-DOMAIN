@@ -40,6 +40,7 @@ var featherEditor = new Aviary.Feather({
 
     },
     onError: function(errorObj) {
+        console.log(errorObj.args);
         alert(errorObj.message);
     }
 });
