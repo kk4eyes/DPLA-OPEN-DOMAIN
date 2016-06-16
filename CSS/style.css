@@ -35,34 +35,33 @@ h1, .searchCount {
 }
 
 div.pix {
-    position: relative;
-    margin:2% 2% 5% 2%;
+    
+    margin:2%;
 }
-
+.card{
+    position:relative;
+}
 .card-block{
-
-    text-align:center;
-    display:none;
-    width:100%;
+  text-align:center;
+  display:none;
+  width:100%;
   display:block;
- 
    
 
 }
 .downloadButton, .editButton, .tweetButton{
   display:none;
-  margin-bottom: 3%;
+
+}
+.pull-left, .pull-right, .text-center{
+  margin-bottom:5%;
 }
 
 span a {
-  
+ 
   display:inline-block;
   color:white;
 
 }
-@media screen and (max-width: 450px ){
-  .card-block{
-    margin-bottom:10%;
-  }
-}
+
 
