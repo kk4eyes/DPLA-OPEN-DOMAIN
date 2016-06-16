@@ -22,9 +22,6 @@ h1, .searchCount {
 }
 
 
-.form {
-    text-align: center;
-}
 
 #injection_site {
     display: flex;
@@ -43,17 +40,27 @@ div.pix {
 }
 .card-block{
   text-align:center;
-  display:none;
   width:100%;
-  display:block;
+  display:none;
+  background:yellow;
+  padding-bottom:4.3333%;
+  background:#300000;
    
 
 }
-.downloadButton, .editButton, .tweetButton{
+.editButton, .tweetButton{
   display:none;
 
 }
+.fa-download{
+  display:none;
+}
+
 .pull-left, .pull-right, .text-center{
+ 
+  
+  padding-right:3%;
+  padding-left:3%;
   margin-bottom:5%;
 }
 

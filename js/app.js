@@ -16,8 +16,8 @@ var featherEditor = new Aviary.Feather({
         //if ($("#" + imageID).parents(".pix:first").find(".downloadButton").length > 0) {
             //change the link of the download button to the newURL of the image after finished saving
             //using propertiers from <a download>
-            $("#" + imageID).parents(".pix:first").find(".downloadButton").attr({ "href": newURL, "download": newURL }).show();
-            
+            $("#" + imageID).parents(".pix:first").find(".downloadButton").attr({ "href": newURL, "download": newURL });
+            $("#" + imageID).parents(".pix:first").find(".fa-download").show();
             //if it doesnt already exist create a new downloadbutton
         //} 
         /*else {
@@ -60,6 +60,7 @@ var numOfPages = 0;
 var searchTerm = "";
 var subject = "";
 var loading= false;
+
 $(function() {
  
 
@@ -95,7 +96,7 @@ $(function() {
                         var imageId= ""+numOfPages+"-"+i;
                         console.log(imageId);
 
-                    $("#injection_site").append("<div class='card pix'><a href='" + link + "'target='_blank''><img class='card-image-top' id='image"  +imageId + "'src=" + data.docs[i].object + "></a><div class='card-block'><span class='pull-left'><a class='editButton' id='button" + imageId + "'><span class='glyphicon glyphicon-edit gi-2x'></span></a></span><span class='text-center'><a class='downloadButton' title='ImageName'><span class='glyphicon glyphicon-download gi-2x'></span></a></span><span class='pull-right'>" + tweetButton + "</span></div></div>");
+                    $("#injection_site").append("<div class='card pix'><a href='" + link + "'target='_blank''><img class='card-image-top' id='image"  +imageId + "'src=" + data.docs[i].object + "></a><div class='card-block'><span class='pull-left'><a class='editButton' id='button" + imageId + "'><i class='fa fa-pencil-square-o fa-2x'></i></a></span><span class='text-center'><a class='downloadButton' title='ImageName'><i class='fa fa-download fa-2x'></i></a></span><span class='pull-right'>" + tweetButton + "</span></div></div>");
                    
                     $("#button" + imageId).click(function() {
                         launchEditor("image" + imageId, data.docs[i].object);
@@ -118,6 +119,7 @@ $(function() {
         console.log(searchTerm);
         $("#injection_site").html("");
         $(".searchCount").html("");
+
 
 
         $.getJSON('http://api.dp.la/v2/items?&sourceResource.type=%22image%22&sourceResource.subject=' + searchTerm + '&sourceResource.rights=%22No%20known%20copyright&page_size=10&api_key=9772d1f08da11321921643124e86205b', function(data) {
@@ -146,7 +148,7 @@ $(function() {
 
                 $("#injection_site").append(
                     "<div class='card pix'>"+
-                        "<a href='" + link + "'target='_blank''><img class='card-image-top' id='image" + i + "'src=" + data.docs[i].object + "></a><div class='card-block'><span class='pull-left'><a class='editButton' id='button" + i + "'><span class='glyphicon glyphicon-edit gi-2x'></span></a></span><span class='text-center'><a class='downloadButton' title='ImageName'><span class='glyphicon glyphicon-download gi-2x'></span></a></span><span class='pull-right'>" + tweetButton + "</span></div></div>");
+                        "<a href='" + link + "'target='_blank''><img class='card-image-top' id='image" + i + "'src=" + data.docs[i].object + "></a><div class='card-block'><span class='pull-left'><a class='editButton' id='button" + i + "'><i class='fa fa-pencil-square-o fa-2x'></i></a></span><span class='text-center'><a class='downloadButton' title='ImageName'><i class='fa fa-download fa-2x'></i></a></span><span class='pull-right'>" + tweetButton + "</span></div></div>");
 
                 
                 
@@ -155,6 +157,7 @@ $(function() {
 
 
                 });
+
             
 
             });
@@ -167,6 +170,9 @@ $(function() {
 });
 
 function loadButtons(){
+
+    $(".editButton, .downloadButton").css("cursor", "pointer");
   
-  $(".editButton, .tweetButton").fadeIn(20000);
+  $(".card-block").fadeIn(20000);
+  $(".editButton, .tweetButton").fadeIn(25000);
 }
