@@ -41,17 +41,17 @@ div.pix {
 .card-block{
   text-align:center;
   width:100%;
-  display:none;
   background:yellow;
   padding-bottom:4.3333%;
   background:#300000;
    
 
 }
-.editButton, .tweetButton{
+/*.editButton, .tweetButton{
   display:none;
 
-}
+}*/
+
 .fa-download{
   display:none;
 }
@@ -70,5 +70,3 @@ span a {
   color:white;
 
 }
-
-
