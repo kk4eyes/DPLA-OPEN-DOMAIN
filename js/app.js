@@ -14,11 +14,11 @@ var featherEditor = new Aviary.Feather({
         img.src = newURL;
         //if the download button already exists in the div
         //if ($("#" + imageID).parents(".pix:first").find(".downloadButton").length > 0) {
-            //change the link of the download button to the newURL of the image after finished saving
-            //using propertiers from <a download>
-            $("#" + imageID).parents(".pix:first").find(".downloadButton").attr({ "href": newURL, "download": newURL });
-            $("#" + imageID).parents(".pix:first").find(".fa-download").show();
-            //if it doesnt already exist create a new downloadbutton
+        //change the link of the download button to the newURL of the image after finished saving
+        //using propertiers from <a download>
+        $("#" + imageID).parents(".pix:first").find(".downloadButton").attr({ "href": newURL, "download": newURL });
+        $("#" + imageID).parents(".pix:first").find(".fa-download").show();
+        //if it doesnt already exist create a new downloadbutton
         //} 
         /*else {
             var downloadButton = "<span class='text-center'><a class='downloadButton' download='" + newURL + "'href='" + newURL + "'title='ImageName'><span class='glyphicon glyphicon-download gi-2x'></span></a></span>";
@@ -42,7 +42,7 @@ var featherEditor = new Aviary.Feather({
     onError: function(errorObj) {
         console.log(errorObj.args);
         alert(errorObj.message);
-       
+
     }
 });
 
@@ -61,15 +61,15 @@ $.getJSON('http://api.dp.la/v2/items?&sourceResource.type=%22image%22&sourceReso
 var numOfPages = 0;
 var searchTerm = "";
 var subject = "";
-var loading= false;
+var loading = false;
 
 $(function() {
- 
+
 
     var win = $(window);
     $(window).scroll(function() {
         if ($(document).height() - win.height() == win.scrollTop() && !loading) {
-            loading=true;
+            loading = true;
             numOfPages++;
             $.getJSON('http://api.dp.la/v2/items?&sourceResource.type=%22image%22&sourceResource.subject=' + searchTerm + '&sourceResource.rights=%22No%20known%20copyright&page_size=10&page=' + numOfPages + '&api_key=9772d1f08da11321921643124e86205b', function(data) {
                 loading = false;
@@ -95,11 +95,11 @@ $(function() {
 
                     var tweetButton = "<a class='tweetButton' href='https://twitter.com/intent/tweet?text=No copyright photo via the " + dataProvider + " and dpla: " + link + "&hashtags=" + subject + ", dpla' target='_blank'><i class='fa fa-twitter fa-2x'></i></a>";
 
-                        var imageId= ""+numOfPages+"-"+i;
-                        console.log(imageId);
+                    var imageId = "" + numOfPages + "-" + i;
+                    console.log(imageId);
 
 
-                    $("#injection_site").append("<div class='card pix'><a href='" + link + "'target='_blank''><img class='card-image-top' id='image"  +imageId + "'src=" + data.docs[i].object + "></a><div class='card-block'><span class='pull-left'><a class='editButton' id='button" + imageId + "'><i class='fa fa-pencil-square-o fa-2x'></i></a></span><span class='text-center'><a class='downloadButton' title='ImageName'><i class='fa fa-download fa-2x'></i></a></span><span class='pull-right'>" + tweetButton + "</span></div></div>");
+                    appendToInjectionSite(link, imageId, data.docs[i].object, tweetButton);
                    
 
                     $("#button" + imageId).click(function() {
@@ -109,14 +109,14 @@ $(function() {
                     });
 
                 });
-              loadButtons();
+                showCardPix();
 
             });
 
 
         }
     });
-   
+
     $("form").submit(function(e) {
         e.preventDefault();
         searchTerm = $("#subject").val();
@@ -146,38 +146,43 @@ $(function() {
                     subject = searchTerm;
                 }
 
-
+                
                 var tweetButton = "<a class='tweetButton' href='https://twitter.com/intent/tweet?text=No copyright photo via the " + dataProvider + " and dpla:" + link + "&hashtags=" + subject + ", dpla' target='_blank'><i class='fa fa-twitter fa-2x'></i></a>";
 
-
-                $("#injection_site").append(
-                    "<div class='card pix'>"+
-                        "<a href='" + link + "'target='_blank''><img class='card-image-top' id='image" + i + "'src=" + data.docs[i].object + "></a><div class='card-block'><span class='pull-left'><a class='editButton' id='button" + i + "'><i class='fa fa-pencil-square-o fa-2x'></i></a></span><span class='text-center'><a class='downloadButton' title='ImageName'><i class='fa fa-download fa-2x'></i></a></span><span class='pull-right'>" + tweetButton + "</span></div></div>");
-
+                 appendToInjectionSite(link, i, data.docs[i].object, tweetButton);
                 
-                
+
+
                 $("#button" + i).click(function() {
                     launchEditor("image" + i, data.docs[i].object);
 
-
                 });
-
-            
 
             });
 
-      loadButtons();
+            
+            showCardPix();
         });
-    
+
     });
 
 });
 
-function loadButtons(){
 
-    $(".editButton, .downloadButton").css("cursor", "pointer");
-  
-  $(".card-block").fadeIn(20000);
-  $(".editButton, .tweetButton").fadeIn(25000);
-  featherEditor.onError(data.docs[i].object);
+
+function showCardPix(){
+    console.log("test");
+    $(".pix img").load(function(){
+        console.log(this);
+        //$(this).show();
+        $(this).parents(".pix").show();
+
+
+    })
+}
+
+
+function appendToInjectionSite(link, imageId, imageSrc, tweetButton){
+     $("#injection_site").append("<div class='card pix' style='display:none'><a href='" + link + "'target='_blank''><img class='card-image-top' id='image" + imageId + "'src=" + imageSrc + "></a><div class='card-block'><span class='pull-left'><a class='editButton' id='button" + imageId + "'><i class='fa fa-pencil-square-o fa-2x'></i></a></span><span class='text-center'><a class='downloadButton' title='ImageName'><i class='fa fa-download fa-2x'></i></a></span><span class='pull-right'>" + tweetButton + "</span></div></div>");
+
 }
