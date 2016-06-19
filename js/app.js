@@ -118,12 +118,19 @@ $(function() {
     });
 
     $("form").submit(function(e) {
-        e.preventDefault();
         searchTerm = $("#subject").val();
-        console.log(searchTerm);
+        if(searchTerm.length < 3 || searchTerm.indexOf(" ")>0 && searchTerm.indexOf(" ")<=2){
+            alert("Enter a valid search term!");
+            return false;
+        }
+        else {
+             e.preventDefault();
+              console.log(searchTerm);
         $("#injection_site").html("");
         $(".searchCount").html("");
 
+        }
+       
 
 
         $.getJSON('http://api.dp.la/v2/items?&sourceResource.type=%22image%22&sourceResource.subject=' + searchTerm + '&sourceResource.rights=%22No%20known%20copyright&page_size=10&api_key=9772d1f08da11321921643124e86205b', function(data) {
@@ -147,7 +154,7 @@ $(function() {
                 }
 
                 
-                var tweetButton = "<a class='tweetButton' href='https://twitter.com/intent/tweet?text=No copyright photo via the " + dataProvider + " and dpla:" + link + "&hashtags=" + subject + ", dpla' target='_blank'><i class='fa fa-twitter fa-2x'></i></a>";
+                var tweetButton = "<a class='tweetButton' href='https://twitter.com/intent/tweet?text=No copyright photo via the " + dataProvider + " and dpla: " + link + "&hashtags=" + subject + ", dpla' target='_blank'><i class='fa fa-twitter fa-2x'></i></a>";
 
                  appendToInjectionSite(link, i, data.docs[i].object, tweetButton);
                 
