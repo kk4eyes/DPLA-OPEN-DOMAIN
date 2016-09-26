@@ -81,7 +81,7 @@ function getTotalNumberImages(){
     }
     url = "http://api.dp.la/v2/items?";
     $.getJSON(url, params, function(data){
-        $(".totalImages").text("There are currently " + data.count + " free to use images from the DPLA available");
+        $(".totalImages").text("There are currently " + data.count + " public domain images from the DPLA available");
     });
 }
 
