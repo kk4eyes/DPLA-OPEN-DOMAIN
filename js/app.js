@@ -81,7 +81,7 @@ function getTotalNumberImages(){
     }
     url = "http://api.dp.la/v2/items?";
     $.getJSON(url, params, function(data){
-        $(".totalImages").text("There are currently " + data.count + " free to use images from the DPLA available");
+        $(".totalImages").text("There are currently " + data.count + " public domain images from the DPLA available");
     });
 }
 
@@ -208,4 +208,3 @@ function createTweetButton(dataProvider, link, subject){
     tweetButton = "<a class='tweetButton' href='https://twitter.com/intent/tweet?text=No copyright photo via the " + dataProvider + " and dpla: " + link + "&hashtags=" + subject + ", dpla' target='_blank'><i class='fa fa-twitter fa-2x'></i></a>";
     
 }
-
