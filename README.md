@@ -1,7 +1,7 @@
 # DPLA-OPEN-DOMAIN
 A single page web app that connects to the Digital Public Library of America's API
 
-
+![DPLA screenshot](DPLA.png)
 This was a very fun project. I have a master's degree in Library Science and at the time I was developing this app, I was just starting to learn more about API's and connecting to third party data in my own applications but I was also working as a Reference Librarian in Worcester. So I did a little research and I found that the Digital Public Library of America has an awesome open API that's available to everyone. So I thought it would be cool to create something where people can see all the publicly available and unlicensed photos from the DPLA's api.
 
 I originally set up my API request to just load images from the api based on a search query and in the app, give people the ability to tweet links to the content on their twitter account. But then I stumbled across this image editor called [Feather](https://developers.aviary.com/docs/web/setup-guide) from Aviary.
